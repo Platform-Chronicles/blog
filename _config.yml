@@ -1,0 +1,10 @@
+title: Project Dev Log
+description: Technical updates and experiments
+theme: minima
+markdown: kramdown
+
+plugins:
+  - jekyll-feed
+
+exclude:
+  - README.md
