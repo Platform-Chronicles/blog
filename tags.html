@@ -1,0 +1,50 @@
+---
+layout: default
+title: Tags
+---
+
+<div class="tags-page">
+  <h1>All Tags</h1>
+
+  {% assign tags_list = site.tags | sort %}
+
+  {% if tags_list.size > 0 %}
+    <div class="tags-cloud">
+      {% for tag in tags_list %}
+        <a href="#{{ tag[0] | slugify }}" class="tag-cloud-item">
+          <span class="tag">{{ tag[0] }}</span>
+          <span class="tag-count">{{ tag[1].size }}</span>
+        </a>
+      {% endfor %}
+    </div>
+
+    <div class="tags-sections">
+      {% for tag in tags_list %}
+        <section class="tag-section" id="{{ tag[0] | slugify }}">
+          <h2>
+            <span class="tag">{{ tag[0] }}</span>
+            <span class="post-count">{{ tag[1].size }} post{% if tag[1].size != 1 %}s{% endif %}</span>
+          </h2>
+
+          <ul class="post-list">
+            {% for post in tag[1] %}
+              <li class="post-item">
+                <h3>
+                  <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                </h3>
+                <div class="post-meta">
+                  <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %d, %Y" }}</time>
+                </div>
+                {% if post.excerpt %}
+                  <p class="excerpt">{{ post.excerpt | strip_html | truncatewords: 20 }}</p>
+                {% endif %}
+              </li>
+            {% endfor %}
+          </ul>
+        </section>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>No tags yet.</p>
+  {% endif %}
+</div>

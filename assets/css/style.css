@@ -281,6 +281,86 @@ footer {
   content: " →";
 }
 
+/* Tags Page */
+.tags-page h1 {
+  margin-bottom: 2rem;
+}
+
+.tags-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 2rem 0 3rem 0;
+  padding: 1.5rem;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+}
+
+.tag-cloud-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  transition: transform 0.2s;
+}
+
+.tag-cloud-item:hover {
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+.tag-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.5rem;
+  height: 1.5rem;
+  padding: 0 0.4rem;
+  background-color: var(--bg-tertiary);
+  color: var(--text-secondary);
+  border-radius: 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.tag-section {
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.tag-section:last-child {
+  border-bottom: none;
+}
+
+.tag-section h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.post-count {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: normal;
+}
+
+.tag-section .post-item h3 {
+  font-size: 1.1rem;
+  margin: 0 0 0.3rem 0;
+}
+
+.tag-section .post-item h3 a {
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.tag-section .post-item h3 a:hover {
+  color: var(--accent-blue);
+}
+
 @media (max-width: 768px) {
   .container {
     padding: 1rem;
