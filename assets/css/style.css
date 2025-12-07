@@ -39,6 +39,26 @@ header {
   margin-bottom: 3rem;
 }
 
+.site-header {
+  margin-bottom: 1rem;
+}
+
+.site-branding {
+  display: inline-block;
+  text-decoration: none;
+}
+
+.site-logo {
+  max-width: 500px;
+  width: 100%;
+  height: auto;
+  transition: opacity 0.2s;
+}
+
+.site-logo:hover {
+  opacity: 0.8;
+}
+
 header .site-title {
   font-size: 1.5rem;
   font-weight: 600;
@@ -264,6 +284,10 @@ footer {
 @media (max-width: 768px) {
   .container {
     padding: 1rem;
+  }
+
+  .site-logo {
+    max-width: 100%;
   }
 
   h1 {

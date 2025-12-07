@@ -10,7 +10,11 @@
   <body>
     <div class="container">
       <header>
-        <a href="{{ '/' | relative_url }}" class="site-title">{{ site.title }}</a>
+        <div class="site-header">
+          <a href="{{ '/' | relative_url }}" class="site-branding">
+            <img src="{{ '/assets/platform-chronicles.png' | relative_url }}" alt="{{ site.title }}" class="site-logo" />
+          </a>
+        </div>
         <p class="site-description">{{ site.description }}</p>
         <nav>
           <a href="{{ '/' | relative_url }}">Home</a>

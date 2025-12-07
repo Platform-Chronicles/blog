@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a Jekyll-based blog called "Project Dev Log" for The Platform Chronicles. The site uses a custom dark theme optimized for technical content and is automatically deployed to GitHub Pages via GitHub Actions.
+This is a Jekyll-based blog called "Platform Chronicles" focused on platform engineering topics. The site uses a custom dark theme optimized for technical content and is automatically deployed to GitHub Pages via GitHub Actions.
 
 ## Development Commands
 
@@ -50,8 +50,8 @@ bundle exec jekyll build --incremental
 
 ### Configuration
 - `_config.yml` contains site-wide settings:
-  - Title: "Project Dev Log"
-  - Description: "Technical updates and experiments"
+  - Title: "Platform Chronicles"
+  - Description: "Platform Engineering Chronicles - Learning through narrative-driven technical implementations"
   - Plugins: jekyll-feed
   - Excludes: README.md, vendor/, Gemfile, Gemfile.lock (vendor/ exclusion is critical for GitHub Actions builds)
 
@@ -59,13 +59,15 @@ bundle exec jekyll build --incremental
 - `index.html` - Homepage with post listing
 - `tags.md` - Tags page (currently empty)
 - `assets/css/style.css` - Custom dark theme stylesheet
+- `assets/platform-chronicles.png` - Site logo/branding
 - `Gemfile` - Uses `github-pages` gem for GitHub Pages compatibility
 
 ## Design Features
+- Platform Chronicles branding with custom logo
 - Dark theme with GitHub-inspired color palette
 - Responsive layout optimized for technical content
 - Code syntax highlighting with monospace fonts
 - Post cards with hover effects on homepage
 - Tags displayed with styled badges
 - Navigation between posts and home page
-- Mobile-responsive design
+- Mobile-responsive design with adaptive logo sizing
