@@ -1,5 +1,7 @@
 title: Platform Chronicles
 description: Platform Engineering Chronicles - Learning through narrative-driven technical implementations
+baseurl: "/blog"
+url: "https://platform-chronicles.github.io"
 markdown: kramdown
 
 plugins:
