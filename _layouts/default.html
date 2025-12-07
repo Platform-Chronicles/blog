@@ -2,22 +2,29 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{ page.title }} | {{ site.title }}</title>
+    <meta name="description" content="{{ site.description }}" />
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}" />
   </head>
   <body>
-    <main>
-      <h1>{{ page.title }}</h1>
+    <div class="container">
+      <header>
+        <a href="{{ '/' | relative_url }}" class="site-title">{{ site.title }}</a>
+        <p class="site-description">{{ site.description }}</p>
+        <nav>
+          <a href="{{ '/' | relative_url }}">Home</a>
+          <a href="{{ '/tags.html' | relative_url }}">Tags</a>
+        </nav>
+      </header>
 
-      {% if page.tags %}
-        <p>
-          Tags:
-          {% for tag in page.tags %}
-            <span>#{{ tag }}</span>
-          {% endfor %}
-        </p>
-      {% endif %}
+      <main>
+        {{ content }}
+      </main>
 
-      {{ content }}
-    </main>
+      <footer>
+        <p>&copy; {{ 'now' | date: "%Y" }} {{ site.title }}. Powered by Jekyll.</p>
+      </footer>
+    </div>
   </body>
 </html>
