@@ -12,14 +12,17 @@
       <header>
         <div class="site-header">
           <a href="{{ '/' | relative_url }}" class="site-branding">
-            <img src="{{ '/assets/platform-chronicles.png' | relative_url }}" alt="{{ site.title }}" class="site-logo" />
+            <img src="{{ '/assets/platform-chronicles-logo.svg' | relative_url }}" alt="Logo" class="site-logo-icon" />
+            <div class="site-title-group">
+              <h1 class="site-title">PLATFORM CHRONICLES</h1>
+              <p class="site-tagline">{{ site.description }}</p>
+            </div>
           </a>
+          <nav>
+            <a href="{{ '/' | relative_url }}">Home</a>
+            <a href="{{ '/tags.html' | relative_url }}">Tags</a>
+          </nav>
         </div>
-        <p class="site-description">{{ site.description }}</p>
-        <nav>
-          <a href="{{ '/' | relative_url }}">Home</a>
-          <a href="{{ '/tags.html' | relative_url }}">Tags</a>
-        </nav>
       </header>
 
       <main>
