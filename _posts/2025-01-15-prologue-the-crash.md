@@ -2,7 +2,7 @@
 layout: post
 title: "Prologue: The Crash"
 date: 2025-01-15
-tags: [platform-engineering, story, restaurant-tech]
+tags: [chronicles, prologue]
 series: "Platform Chronicles"
 chapter: prologue
 ---

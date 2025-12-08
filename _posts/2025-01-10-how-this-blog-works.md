@@ -2,7 +2,7 @@
 layout: post
 title: "How This Blog Works: Jekyll, GitHub Actions, and GitHub Pages"
 date: 2025-01-10
-tags: [meta, jekyll, github-actions, cicd]
+tags: [meta, jekyll, github-actions]
 ---
 
 # How This Blog Works
