@@ -5,8 +5,6 @@ date: 2025-01-10
 tags: [meta, jekyll, github-actions]
 ---
 
-# How This Blog Works
-
 This blog is built with Jekyll, automatically deployed via GitHub Actions, and hosted on GitHub Pages. Here's how it all fits together.
 
 ## The Stack

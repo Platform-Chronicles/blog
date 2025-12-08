@@ -7,8 +7,6 @@ series: "Platform Chronicles"
 chapter: prologue
 ---
 
-# Prologue: The Crash
-
 It's 8:47 PM on a Friday in Barcelona, and Lena Kowalski's phone won't stop buzzing.
 
 "The system is down again," reads the message from her restaurant manager. "Customers can't order."
