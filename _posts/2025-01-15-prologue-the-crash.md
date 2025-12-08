@@ -1,13 +1,13 @@
 ---
 layout: post
-title: "Chapter 0: The Crash"
+title: "Prologue: The Crash"
 date: 2025-01-15
 tags: [platform-engineering, story, restaurant-tech]
 series: "Platform Chronicles"
-chapter: 0
+chapter: prologue
 ---
 
-# Chapter 0: The Crash
+# Prologue: The Crash
 
 It's 8:47 PM on a Friday in Barcelona, and Lena Kowalski's phone won't stop buzzing.
 
