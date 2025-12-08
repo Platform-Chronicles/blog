@@ -18,6 +18,8 @@ This is not just a blog. It's a complete platform engineering portfolio that sho
 
 **Narrative Inspiration:** The storytelling approach is inspired by Gene Kim's [The Phoenix Project](https://itrevolution.com/product/the-phoenix-project/) and [The Unicorn Project](https://itrevolution.com/product/the-unicorn-project/), blending narrative with technical depth to make platform engineering concepts accessible and engaging.
 
+**Development Approach:** All code and content has been generated with the help of [Claude Code](https://claude.ai/code) by Anthropic, while reading [Vibe Coding](https://itrevolution.com/product/vibe-coding-book/) by Gene Kim and Steve Yegge. This project is a practical exploration of AI-assisted software development.
+
 ## The Approach
 
 Each chapter follows a structure:
