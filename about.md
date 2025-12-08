@@ -16,6 +16,8 @@ This is not just a blog. It's a complete platform engineering portfolio that sho
 **Format:** Story + Working Code + Tests + Documentation
 **Goal:** Demonstrate platform engineering skills through real implementations
 
+**Narrative Inspiration:** The storytelling approach is inspired by Gene Kim's [The Phoenix Project](https://itrevolution.com/product/the-phoenix-project/) and [The Unicorn Project](https://itrevolution.com/product/the-unicorn-project/), blending narrative with technical depth to make platform engineering concepts accessible and engaging.
+
 ## The Approach
 
 Each chapter follows a structure:
