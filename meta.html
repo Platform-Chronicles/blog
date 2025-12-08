@@ -1,15 +1,18 @@
 ---
 layout: default
-title: Home
+title: Meta
+permalink: /meta/
 ---
 
 <div class="home">
-  <h1>Recent Posts</h1>
+  <h1>Meta Posts</h1>
+  <p>Technical posts about the blog infrastructure and project setup.</p>
 
-  {% if site.posts.size > 0 %}
+  {% assign meta_posts = site.posts | where_exp: "post", "post.tags contains 'meta'" %}
+
+  {% if meta_posts.size > 0 %}
     <ul class="post-list">
-      {% for post in site.posts %}
-        {% unless post.tags contains 'meta' %}
+      {% for post in meta_posts %}
         <li class="post-item">
           <h2>
             <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
@@ -32,10 +35,9 @@ title: Home
 
           <a href="{{ post.url | relative_url }}" class="read-more">Read more</a>
         </li>
-        {% endunless %}
       {% endfor %}
     </ul>
   {% else %}
-    <p>No posts yet.</p>
+    <p>No meta posts yet.</p>
   {% endif %}
 </div>
