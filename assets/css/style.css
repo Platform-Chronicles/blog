@@ -638,3 +638,8 @@ footer {
     width: 100%;
   }
 }
+
+/* Expand container when homepage has sidebar */
+.container:has(.home-with-sidebar) {
+  max-width: 1200px;
+}
