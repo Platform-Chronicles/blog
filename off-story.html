@@ -1,15 +1,18 @@
 ---
 layout: default
-title: Home
+title: Off-Story
+permalink: /off-story/
 ---
 
 <div class="home">
-  <h1>The Chronicles</h1>
+  <h1>Off-Story Posts</h1>
+  <p>Technical posts outside the main narrative: blog infrastructure, experiments, and explorations.</p>
 
-  {% if site.posts.size > 0 %}
+  {% assign offstory_posts = site.posts | where_exp: "post", "post.tags contains 'off-story'" %}
+
+  {% if offstory_posts.size > 0 %}
     <ul class="post-list">
-      {% for post in site.posts %}
-        {% unless post.tags contains 'off-story' %}
+      {% for post in offstory_posts %}
         <li class="post-item">
           <h2>
             <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
@@ -32,10 +35,9 @@ title: Home
 
           <a href="{{ post.url | relative_url }}" class="read-more">Read more</a>
         </li>
-        {% endunless %}
       {% endfor %}
     </ul>
   {% else %}
-    <p>No posts yet.</p>
+    <p>No off-story posts yet.</p>
   {% endif %}
 </div>

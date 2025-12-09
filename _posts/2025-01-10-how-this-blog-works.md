@@ -2,7 +2,7 @@
 layout: post
 title: "How This Blog Works: Jekyll, GitHub Actions, and GitHub Pages"
 date: 2025-01-10
-tags: [meta, jekyll, github-actions]
+tags: [off-story, jekyll, github-actions]
 ---
 
 This blog is built with Jekyll, automatically deployed via GitHub Actions, and hosted on GitHub Pages. Here's how it all fits together.
