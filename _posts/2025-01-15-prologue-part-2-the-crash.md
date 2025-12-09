@@ -1,10 +1,11 @@
 ---
 layout: post
-title: "Prologue: The Crash"
+title: "Prologue: Part 2 - The Crash"
 date: 2025-01-15
 tags: [chronicles, prologue]
 series: "Platform Chronicles"
 chapter: prologue
+part: 2
 ---
 
 It's 8:47 PM on a Friday in Barcelona, and Lena Kowalski's phone won't stop buzzing.
@@ -15,15 +16,9 @@ This is the third time this week.
 
 ## The Beginning
 
-Six months ago, Lena had a problem that many small restaurant owners face: the existing point-of-sale systems were too expensive (€10K+ setup fees, €165/month per terminal), too complicated, or both. As someone who had built a successful farm-to-table restaurant in the heart of Barcelona's Gràcia neighborhood, she knew what she needed: something simple, affordable, and modern.
+Diego's system had worked beautifully for the first month. Orders flowing smoothly, the kitchen display updating in real-time, everything stored neatly in SQLite. He'd been confident during the demo. "No monthly fees. No complicated setup."
 
-Her cousin Diego, a computer science student, offered to help. "I can build you something better," he said. "Give me three weeks."
-
-Diego was true to his word. He built a clean, simple system using Python and FastAPI. Orders came in through a web interface, the kitchen got a real-time display, and everything was stored in a SQLite database. No monthly fees. No complicated setup. Just a Python script running on a small server.
-
-It worked beautifully.
-
-For the first month.
+Then the cracks started showing.
 
 ## The Pattern
 
@@ -64,6 +59,10 @@ By the time Diego arrives at 9:30 PM, they've lost at least €800 in orders.
 He restarts the Python process. The system comes back up. Orders start flowing again.
 
 "I don't understand," Diego says, staring at the logs. "The database is too small to cause these issues. We only have maybe 2,000 orders in there."
+
+He remembers Lena's question during the demo. "What about when we expand?" He'd deflected it, said to focus on making one location work first.
+
+Now one location was failing.
 
 Lena looks at the Friday night crowd - every table full, orders coming in steadily. "Can you fix this before next Friday?"
 

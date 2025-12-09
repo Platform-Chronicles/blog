@@ -1,10 +1,11 @@
 ---
 layout: post
-title: "The ForkFlow Monolith: A Restaurant Management System"
-date: 2025-01-16
+title: "Prologue: Part 1 - The Monolith"
+date: 2025-01-14
 tags: [chronicles, prologue, fastapi, sqlite, python]
 series: "Platform Chronicles"
 chapter: prologue
+part: 1
 ---
 
 "It's ready. Come see."
