@@ -2,31 +2,31 @@
 layout: post
 title: "AI Orchestration Patterns: When Agents Should Call Skills"
 date: 2025-12-09
-tags: [ai, orchestration, architecture, design-patterns]
+tags: [off-story, ai, orchestration, architecture, design-patterns]
 ---
 
-I spent today building three different orchestration patterns for AI systems. What started as a simple experiment in task decomposition turned into a lesson about separation of concerns, computational delegation, and why LLMs shouldn't do arithmetic.
+I spent today building orchestration patterns for AI systems. What started as a simple experiment in task decomposition turned into a lesson about separation of concerns, computational delegation, and why LLMs shouldn't do arithmetic.
 
 ## The Problem
 
-You have a task that needs to be broken down into smaller pieces and executed. Maybe it's prime factorization. Maybe it's a software project. The question is: how do you structure the coordination?
+You have a task that needs computation. Prime factorization, in this case. The question is: should your orchestrator do the math, or delegate it?
 
-Three patterns emerged:
+Two approaches:
 
-1. **Agent-based** - Orchestrator dispatches to specialized subagents
-2. **Skill-based** - Orchestrator calls stateless computational skills
-3. **Hybrid** - Agents that can call skills
+1. **Agent-based** - Orchestrator computes, then dispatches to specialized agents
+2. **Skill-based** - Orchestrator delegates computation to stateless skills
 
-Each has different trade-offs. Let's look at what happened when I tried all three.
+I tried both. One failed, one worked.
 
-## The Experiment Setup
+## The Experiment
 
-I built a test orchestration system with three directories:
-- `/agents` - Pure multi-agent coordination
-- `/skills` - Orchestrator with computational skills
-- `/hybrid` - Agents with skill capabilities
+I built a test orchestration system comparing two patterns using Claude's function calling. The orchestrator is an LLM with a system prompt defining its role. "Calling a skill" means the orchestrator uses function calling to invoke a Python function. "Dispatching to an agent" means spawning a new LLM instance with a specialized prompt.
 
-The default task: prime factorization. Why? Because it's simple conceptually but computationally demanding. And because LLMs are terrible at arithmetic.
+Two directories:
+- `/agents` - Orchestrator does arithmetic, coordinates subagents
+- `/skills` - Orchestrator delegates arithmetic to computational skills
+
+The test task: prime factorization. Simple conceptually, computationally demanding, and LLMs are terrible at arithmetic.
 
 ## Agent-Based Pattern
 
@@ -147,215 +147,27 @@ Outputs (JSON):
 
 The skill is stateless, deterministic, and includes verification.
 
-## Hybrid Pattern: Agents That Call Skills
-
-For more complex tasks (like planning a software project), you want agents that can reason but also leverage computational skills.
-
-**Structure:**
-```
-Orchestrator (Staff Engineer role)
-├── PlanningAgent
-│   └── Skills: (rarely needed)
-├── InfraAgent
-│   ├── validate_schema skill
-│   └── log_execution skill
-├── BackendAgent
-│   ├── generate_stub skill
-│   └── log_execution skill
-└── QAAgent
-    ├── check_readiness skill
-    └── log_execution skill
-```
-
-**Key rules:**
-- Agents never talk to each other (only to orchestrator)
-- Agents may call skills within their domain
-- Skills are stateless and non-reasoning
-- Orchestrator owns final decisions
-
-**Example flow:**
-```
-User: "Prepare production-ready REST API skeleton"
-
-Orchestrator → PlanningAgent
-PlanningAgent → Returns scope, non-goals, criteria
-
-Orchestrator → InfraAgent
-InfraAgent → Calls validate_schema(k8s_manifest)
-InfraAgent → Returns infra decisions
-
-Orchestrator → BackendAgent
-BackendAgent → Calls generate_stub(language="js", framework="express")
-BackendAgent → Returns system structure
-
-Orchestrator → QAAgent
-QAAgent → Calls check_readiness(checklist=[...])
-QAAgent → Returns risk analysis
-
-Orchestrator → Synthesizes final summary
-```
-
-## Design Principles That Emerged
-
-### 1. Agents reason, skills compute
-
-If it's algorithmic and error-prone for LLMs, it's a skill. If it requires judgment and context, it's an agent.
-
-**Skill candidates:**
-- Arithmetic operations
-- Data parsing/validation
-- Schema checking
-- File generation
-- Systematic searches
-
-**Agent candidates:**
-- Architectural decisions
-- Risk assessment
-- Planning and scoping
-- Trade-off analysis
-- Context synthesis
-
-### 2. Skills must be stateless
-
-Every skill call should be independent. No shared state, no side effects (beyond the return value).
-
-**Good:**
-```
-factorize(11305) → [5, 7, 17, 19]
-factorize(11305) → [5, 7, 17, 19]  // Same result
-```
-
-**Bad:**
-```
-configure_system("prod")  // Changes global state
-get_config() → "prod"     // Depends on previous call
-```
-
-### 3. Include verification in computational skills
-
-Skills that compute should verify their work:
-
-```json
-{
-  "prime_factors": [5, 7, 17, 19],
-  "verification": 11305,
-  "is_correct": true
-}
-```
-
-This catches errors immediately instead of propagating bad data.
-
-### 4. Orchestrators coordinate, don't compute
-
-Original orchestrator (agents pattern):
-```
-- Compute prime factorization
-- Assign factors to agents
-- Collect responses
-- Aggregate metrics
-```
-
-Fixed orchestrator (skills pattern):
-```
-- Call factorize skill
-- Use results to create assignments
-- Call record_execution skills
-- Aggregate metrics
-```
-
-The orchestrator stopped doing arithmetic and started doing coordination.
-
-## When to Use Each Pattern
-
-**Agent-based** - When you need:
-- Dynamic scaling of similar workers
-- Explicit retry and failure handling
-- Complex state machines
-- Quota management per agent
-
-**Skills-based** - When you need:
-- Deterministic computation
-- Minimal coordination overhead
-- Clear separation of reasoning vs execution
-- Verifiable results
-
-**Hybrid** - When you need:
-- Multiple reasoning perspectives (planning, QA, architecture)
-- Domain-specific computational tools
-- Clear boundaries between agent responsibilities
-- Reusable skills across agents
-
-## The Key Insight
-
-The failure with 11305 wasn't a bug - it was a design problem. Asking an orchestrator to compute prime factorization is like asking a project manager to write the code. They might get it right sometimes, but it's not their job.
-
-When I moved computation into a skill, three things happened:
-1. The orchestrator became simpler (just coordination)
-2. The computation became reliable (systematic algorithm)
-3. The system became testable (skill returns verification)
-
-## Implementation Files
-
-All three patterns are documented with:
-- Orchestrator prompts with call examples
-- Agent/skill definitions with I/O specs
-- Configuration parameters
-- Example workflows
-
-The repository structure:
-```
-orchestration/
-├── agents/
-│   ├── orchestrator.md
-│   ├── prime-agent-two.md
-│   ├── prime-agent-three.md
-│   └── prime-agent-generic.md
-├── skills/
-│   ├── orchestrator.md
-│   ├── factorize-skill.md
-│   └── record-execution-skill.md
-└── hybrid/
-    ├── orchestrator.md
-    ├── agents/
-    │   ├── planning-agent.md
-    │   ├── infra-agent.md
-    │   ├── backend-agent.md
-    │   └── qa-agent.md
-    └── skills/
-        ├── generate_stub.md
-        ├── validate_schema.md
-        ├── check_readiness.md
-        └── log_execution.md
-```
-
-Each file includes:
-- Role definition
-- Input/output formats
-- Concrete call examples
-- Expected behavior
-
 ## What I Learned
 
-**LLMs are not calculators.** Don't ask them to be. Give them tools.
+**LLMs aren't calculators.** The failure with 11305 wasn't a bug - it was a design problem. Asking an orchestrator to compute prime factorization is like asking a project manager to write the code.
 
-**Separation of concerns applies to AI systems.** The same principles that work for traditional software (single responsibility, dependency injection, interface contracts) work for orchestration patterns.
+**Delegate computation to skills.** When I moved arithmetic into a skill:
+1. The orchestrator became simpler (just coordination)
+2. The computation became reliable (deterministic algorithm)
+3. The system became testable (skill returns verification)
 
-**Test with edge cases early.** 360 factors easily. 11305 reveals the cracks. Always test beyond the happy path.
+**Skills should be stateless and verifiable.** Every skill call is independent. Computational skills should verify their own work and return both results and verification.
 
-**Documentation needs examples.** Abstract patterns are hard to understand. Concrete examples with specific inputs and outputs make patterns obvious.
+**Test with edge cases early.** 360 factors easily. 11305 exposed the problem. Small numbers hide issues that larger numbers reveal.
 
-## Next Steps
+## When to Use Each
 
-These patterns are building blocks. The next experiments:
-- Add more decomposers (sum_of_squares, base_expansion)
-- Implement failure injection and measure retry effectiveness
-- Build a hybrid pattern for actual software projects
-- Compare performance characteristics under different loads
+Skills work for deterministic operations: arithmetic, data transformation, parsing, API calls. Agents work for judgment calls: architectural decisions, trade-off analysis, subjective evaluation. In this experiment, factorization is deterministic - a perfect fit for skills. An agent deciding whether to optimize for speed or memory? That's reasoning, not computation.
 
-But the core insight stands: when you need computation, use skills. When you need reasoning, use agents. When you need both, use hybrid patterns with clear boundaries.
+## Implementation
+
+Both patterns are documented with orchestrator prompts, agent/skill definitions, and I/O specs in a private repo. The agent pattern has explicit retry logic and failure tracking. The skills pattern uses systematic trial division with built-in verification.
 
 ---
 
-**Repository:** The orchestration pattern experiments are in a private exploration repo. If there's interest, I'll clean it up and publish it.
-
-**Key takeaway:** If your AI orchestrator is doing arithmetic, you're doing it wrong. Delegate to skills.
+The orchestration experiments are in a private repo. Core takeaway: if your orchestrator is doing arithmetic, delegate it to skills.
