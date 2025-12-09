@@ -566,6 +566,7 @@ footer {
   background: var(--bg-secondary);
   border: 1px solid var(--border-color);
   border-radius: 6px;
+  margin-top: 4.5rem; /* Align with first post card (accounts for h1) */
 }
 
 .chronicles-sidebar h3 {
