@@ -13,7 +13,9 @@ permalink: /about/
 This is not just a blog. It's a complete platform engineering portfolio that shows how to evolve a system from a simple monolith to a production-grade platform, one chapter at a time.
 
 **Setting:** Barcelona, Catalonia-based restaurant tech platform
+
 **Format:** Story + Working Code + Tests + Documentation
+
 **Goal:** Demonstrate platform engineering skills through real implementations
 
 **Narrative Inspiration:** The storytelling approach is inspired by Gene Kim's [The Phoenix Project](https://itrevolution.com/product/the-phoenix-project/) and [The Unicorn Project](https://itrevolution.com/product/the-unicorn-project/), blending narrative with technical depth to make platform engineering concepts accessible and engaging.
