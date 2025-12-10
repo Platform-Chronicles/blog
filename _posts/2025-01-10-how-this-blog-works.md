@@ -1,159 +1,42 @@
 ---
 layout: post
-title: "How This Blog Works: Jekyll, GitHub Actions, and GitHub Pages"
+title: "Why and How This Exists"
 date: 2025-01-10
-tags: [off-story, jekyll, github-actions]
+tags: [off-story, meta]
 ---
 
-This blog is built with Jekyll, automatically deployed via GitHub Actions, and hosted on GitHub Pages. Here's how it all fits together.
+## Why I'm Doing This
 
-## The Stack
+I wanted a portfolio that shows actual platform engineering work - not just buzzwords on a resume, but real implementations I can point to and say "here's how I solved this problem."
 
-- **Jekyll** - Static site generator (Ruby)
-- **GitHub Actions** - CI/CD pipeline
-- **GitHub Pages** - Free hosting
-- **Markdown** - Content format
+At work, you're constrained by existing systems, tech debt, politics, budget. This project lets me experiment with technologies I don't get to use day-to-day and actually implement things properly from scratch.
 
-## Repository Structure
+The format forces me to follow through: present the situation, identify the problem, deliver the solution. Not just think about it or plan it - actually do it. Having that structure keeps me honest.
 
-```
-blog/
-├── _posts/              # Blog posts (Markdown)
-├── _layouts/            # Page templates
-├── _config.yml          # Jekyll configuration
-├── .github/
-│   └── workflows/
-│       └── jekyll.yml   # Auto-deploy workflow
-└── Gemfile              # Ruby dependencies
-```
+The narrative aspect gives this coherence. Instead of random disconnected technical posts, there's a thread running through everything. The characters represent different stakeholders - product people, operations, developers - without it feeling forced or artificial. They make the technical decisions feel grounded in real concerns.
 
-## Writing a Post
+And honestly? This is my excuse to experiment with AI tools. Not just use them passively, but really explore what they're good at and where they fall short. Learning by doing.
 
-Create a new file in `_posts/` following the naming convention:
+## How the Blog Works
 
-```
-YYYY-MM-DD-title-slug.md
-```
+The tech stack is deliberately simple: Jekyll for static site generation, GitHub Actions for deployment, GitHub Pages for hosting. Everything is text-based Markdown files, version controlled in Git.
 
-Add front matter at the top:
+A bit of automation makes it public automatically when I push changes. The whole thing costs nothing to run.
 
-```yaml
----
-layout: post
-title: "Your Post Title"
-date: 2025-01-10
-tags: [tag1, tag2]
----
+This IS a proper solution - simple and effective. No databases, no servers, no maintenance. Just write and publish.
 
-# Your content here
-```
+I'm keeping ownership of the content instead of investing time and energy into someone else's platform that might change their terms or shut down tomorrow.
 
-Write in Markdown. Commit and push.
+If you want the technical details, they're all in the [public GitHub repo](https://github.com/Platform-Chronicles/blog). But really, there's not much to it - which is exactly the point.
 
-## Automatic Deployment
+## The Reality
 
-When you push to `main`, GitHub Actions automatically:
+I'm making this up as I go. Every time I have a new idea, I fight the urge to go back and rewrite everything that came before. Sometimes I lose that fight.
 
-1. Checks out the repository
-2. Sets up Ruby and dependencies
-3. Builds the Jekyll site
-4. Deploys to GitHub Pages
+I'm trying to be consistent with the narrative structure, the technical approach, the writing style. I'm definitely messing it up.
 
-The workflow file (`.github/workflows/jekyll.yml`):
+I have these big ambitious plans for where this project will go, and then I procrastinate implementing them because starting is hard and perfection is paralyzing.
 
-```yaml
-name: Deploy Jekyll site to Pages
+But I'm having so much fun with this it almost feels illegal. Building things, writing about them, experimenting with new approaches, learning in public.
 
-on:
-  push:
-    branches: ["main"]
-  workflow_dispatch:
-
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-
-      - name: Build with Jekyll
-        uses: actions/jekyll-build-pages@v1
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-```
-
-## Local Development
-
-To preview posts locally before publishing:
-
-```bash
-# Install dependencies
-bundle install
-
-# Start local server
-bundle exec jekyll serve
-
-# View at http://localhost:4000
-```
-
-Jekyll watches for file changes and automatically rebuilds.
-
-## Why This Setup?
-
-**Simple:** Just write Markdown, commit, and it's live.
-
-**Fast:** Static sites load instantly. No database queries.
-
-**Free:** GitHub Pages hosting costs nothing.
-
-**Version controlled:** Every post, every change is in Git.
-
-**No maintenance:** No server updates, no security patches, no uptime monitoring.
-
-## The Workflow
-
-1. Write post in Markdown
-2. Preview locally with `jekyll serve`
-3. Commit to Git
-4. Push to GitHub
-5. GitHub Actions builds and deploys
-6. Live in ~2 minutes
-
-That's it. No deploy commands, no SSH, no FTP. Just Git.
-
-## Limitations
-
-Jekyll is static, so:
-- No comments (could add Disqus/utterances if needed)
-- No search (could add client-side search)
-- No dynamic content (fine for a blog)
-
-For this project, these aren't limitations - they're features. The blog focuses on content, not complexity.
-
-## Repository
-
-This blog's source: [github.com/Platform-Chronicles/blog](https://github.com/Platform-Chronicles/blog)
-
----
-
-*This is a meta-post about the blogging infrastructure itself, separate from the main Platform Chronicles narrative.*
+So yeah. That's what this is. Hope you enjoy reading it as much as I'm enjoying making it.
